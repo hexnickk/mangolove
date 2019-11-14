@@ -25,12 +25,7 @@ class CounterDbService implements BaseDBService<Counter> {
 
   @override
   Observable<List<Counter>> queryAll() {
-    return _db$
-        .take(1)
-        .asyncMap((db) => db.query(table))
-        .map((counters) =>
-            List.generate(counters.length, (i) => Counter.fromMap(counters[i])))
-        .doOnData((data) {
-    });
+    return _db$.take(1).asyncMap((db) => db.query(table)).map((counters) =>
+        List.generate(counters.length, (i) => Counter.fromMap(counters[i])));
   }
 }

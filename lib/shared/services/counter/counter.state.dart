@@ -18,7 +18,6 @@ class CounterState {
   }
 
   Observable insertMany(List<Counter> newCounters) {
-    counters$.doOnData(print).listen(null);
     return counters$
         .take(1)
         .doOnData(
