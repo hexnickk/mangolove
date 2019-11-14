@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mangolove/shared/components/drawer.widget.dart';
 
+// TODO:
+// [] make mango image smaller
+// [] make mango image above counter text
+// [] add mango service integration
+
 class CounterWidget extends StatefulWidget {
   CounterWidget({Key key}) : super(key: key);
 

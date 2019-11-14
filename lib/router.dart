@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mangolove/components/counter.widget.dart';
 import 'package:mangolove/components/history.widget.dart';
 
+// TODO:
+// [] add acknowledgements route
+
 class Router {
   static final router = fluro.Router();
 

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mangolove/shared/components/drawer.widget.dart';
 
+// TODO:
+// [] remove mango image
+// [] add calendar
+// [] add mango service integration
+
 class HistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
