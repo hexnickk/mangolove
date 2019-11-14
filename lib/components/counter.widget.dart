@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:mangolove/dependency_injection.widget.dart';
 import 'package:mangolove/shared/components/drawer.widget.dart';
+import 'package:mangolove/shared/services/counter/counter.model.dart';
+import 'package:mangolove/shared/services/counter/counter.service.dart';
+import 'package:rxdart/rxdart.dart';
 
 // TODO:
 // [] make mango image smaller
@@ -7,23 +13,32 @@ import 'package:mangolove/shared/components/drawer.widget.dart';
 // [] add mango service integration
 
 class CounterWidget extends StatefulWidget {
-  CounterWidget({Key key}) : super(key: key);
-
   @override
   _CounterWidgetState createState() => _CounterWidgetState();
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-  int _counter = 0;
+  Observable<List<Counter>> _counters$;
+  CounterService _counterService;
+
+  void _init() async {
+    final today = DateTime.now();
+    _counters$ = _counterService
+        .select((counter) => counter.date.day == today.day)
+        .doOnData((data) {
+    });
+  }
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    _counterService.insertOne(Counter(date: DateTime.now())).listen(null);
   }
 
   @override
   Widget build(BuildContext context) {
+    var di = DependencyInjectionWidget.of(context);
+    _counterService = di.counterService;
+    _init();
+
     final appBar = AppBar(
       title: Text('Counter'),
     );
@@ -40,7 +55,18 @@ class _CounterWidgetState extends State<CounterWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('You have ate mango this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.display1),
+            StreamBuilder(
+              stream: _counters$,
+              builder: (context, snapshot) {
+                final textStyle = Theme.of(context).textTheme.display1;
+                if (snapshot.hasData) {
+                  final counter = snapshot.data.length;
+                  return Text('$counter', style: textStyle);
+                } else {
+                  return Text('0', style: textStyle);
+                }
+              },
+            ),
           ],
         ),
       ),

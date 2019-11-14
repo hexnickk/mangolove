@@ -23,7 +23,7 @@ class Router {
     router.navigateTo(context, path, transition: fluro.TransitionType.fadeIn);
   }
 
-  static init() {
+  static forRoot() {
     router.define('counter', handler: _countHandler);
     router.define('history', handler: _historyHandler);
   }
