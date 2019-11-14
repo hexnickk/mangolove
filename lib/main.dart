@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Mango lover',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: MyHomePage(title: 'Mango lover'),
     );
@@ -36,32 +36,57 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text(widget.title),
+    );
+
+    final body = Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/mango.png"),
+          fit: BoxFit.fitHeight,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('You have ate mango this many times:'),
+            Text('$_counter', style: Theme.of(context).textTheme.display1),
+          ],
+        ),
+      ),
+    );
+
+    final floatingActionButton = FloatingActionButton(
+      onPressed: _incrementCounter,
+      tooltip: 'Increment',
+      child: Icon(Icons.add),
+    );
+
+    final drawer = Drawer(
+      child: Padding(
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.check),
+              title: Text('Count mangos'),
+            ),
+            ListTile(
+              leading: Icon(Icons.calendar_today),
+              title: Text('History'),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/mango.png"),
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('You have ate mango this many times:'),
-              Text('$_counter', style: Theme.of(context).textTheme.display1),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      appBar: appBar,
+      drawer: drawer,
+      body: body,
+      floatingActionButton: floatingActionButton,
     );
   }
 }
