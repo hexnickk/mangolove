@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mangolove/dependency_injection.widget.dart';
+import 'package:mangolove/shared/components/appBar.widget.dart';
 import 'package:mangolove/shared/components/drawer.widget.dart';
 import 'package:mangolove/shared/services/counter/counter.model.dart';
 import 'package:mangolove/shared/services/counter/counter.service.dart';
@@ -25,8 +26,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     final today = DateTime.now();
     _counters$ = _counterService
         .select((counter) => counter.date.day == today.day)
-        .doOnData((data) {
-    });
+        .doOnData((data) {});
   }
 
   void _incrementCounter() {
@@ -39,9 +39,7 @@ class _CounterWidgetState extends State<CounterWidget> {
     _counterService = di.counterService;
     _init();
 
-    final appBar = AppBar(
-      title: Text('Counter'),
-    );
+    final appBar = AppBarFactory.build(title: 'Counter');
 
     final body = Container(
       decoration: BoxDecoration(
