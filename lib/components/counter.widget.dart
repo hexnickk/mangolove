@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mangolove/dependency_injection.widget.dart';
 import 'package:mangolove/shared/components/appBar.widget.dart';
@@ -7,11 +5,6 @@ import 'package:mangolove/shared/components/drawer.widget.dart';
 import 'package:mangolove/shared/services/counter/counter.model.dart';
 import 'package:mangolove/shared/services/counter/counter.service.dart';
 import 'package:rxdart/rxdart.dart';
-
-// TODO:
-// [] make mango image smaller
-// [] make mango image above counter text
-// [] add mango service integration
 
 class CounterWidget extends StatefulWidget {
   @override
