@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mangolove/components/history-day-view.widget.dart';
+import 'package:mangolove/pages/history/components/history-day-view.widget.dart';
 import 'package:mangolove/shared/components/appBar.widget.dart';
 import 'package:mangolove/shared/components/drawer.widget.dart';
 

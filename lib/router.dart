@@ -1,7 +1,7 @@
 import 'package:fluro/fluro.dart' as fluro;
 import 'package:flutter/material.dart';
-import 'package:mangolove/components/counter.widget.dart';
-import 'package:mangolove/components/history.widget.dart';
+import 'package:mangolove/pages/counter/counter.widget.dart';
+import 'package:mangolove/pages/history/history.widget.dart';
 
 class Router {
   static final router = fluro.Router();
