@@ -17,9 +17,8 @@ class _CounterWidgetState extends State<CounterWidget> {
 
   void _init() async {
     final today = DateTime.now();
-    _counters$ = _counterService
-        .select((counter) => counter.date.day == today.day)
-        .doOnData((data) {});
+    _counters$ =
+        _counterService.select((counter) => counter.date.day == today.day);
   }
 
   void _incrementCounter() {
@@ -45,17 +44,17 @@ class _CounterWidgetState extends State<CounterWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You have ate mango this many times:'),
+            Text('Today you have ate mango this many times:'),
             StreamBuilder(
               stream: _counters$,
               builder: (context, snapshot) {
-                final textStyle = Theme.of(context).textTheme.display1;
-                if (snapshot.hasData) {
-                  final counter = snapshot.data.length;
-                  return Text('$counter', style: textStyle);
-                } else {
-                  return Text('0', style: textStyle);
-                }
+                final textFactory = (String text) => Text(
+                      text,
+                      style: Theme.of(context).textTheme.display1,
+                    );
+                return snapshot.hasData
+                    ? textFactory('${snapshot.data.length}')
+                    : textFactory('0');
               },
             ),
           ],
