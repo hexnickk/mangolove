@@ -1,13 +1,14 @@
 import 'package:mangolove/shared/services/counter/counter.model.dart';
 import 'package:mangolove/shared/services/db.model.dart';
+import 'package:mangolove/shared/services/db.service.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CounterDbService implements BaseDBService<Counter> {
   final table = 'counters';
-  Observable<Database> _db$;
+  Observable<Database> _db$ = DBService.db$;
 
-  CounterDbService(this._db$) {
+  CounterDbService() {
     _db$.take(1).listen((db) => db.execute(
           'CREATE TABLE IF NOT EXISTS $table(id INTEGER PRIMARY KEY, date INTEGER)',
         ));

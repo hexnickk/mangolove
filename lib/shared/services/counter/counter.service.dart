@@ -1,12 +1,11 @@
 import 'package:mangolove/shared/services/counter/counter.model.dart';
 import 'package:mangolove/shared/services/counter/counter.state.dart';
 import 'package:mangolove/shared/services/counter/counter_db.service.dart';
-import 'package:mangolove/shared/services/db.service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CounterService {
   final _counterState = CounterState();
-  final _counterDBService = CounterDbService(DBService.db$);
+  final _counterDBService = CounterDbService();
 
   CounterService() {
     _counterDBService
