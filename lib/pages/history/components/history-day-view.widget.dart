@@ -3,6 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:mangolove/dependency_injection.widget.dart';
 import 'package:mangolove/shared/services/counter/counter.service.dart';
 
+bool isSameDay(DateTime date1, DateTime date2) =>
+    date1.year == date2.year &&
+    date1.month == date2.month &&
+    date1.day == date2.day;
+
 class HistoryDayWidget extends StatelessWidget {
   final int pastDays;
 
@@ -17,7 +22,7 @@ class HistoryDayWidget extends StatelessWidget {
     CounterService _counterService = di.counterService;
 
     var countersCount$ = _counterService
-        .select((counter) => counter.date.difference(date).inDays == 0)
+        .select((counter) => isSameDay(counter.date, date))
         .map((counters) => counters.length);
 
     return Container(
