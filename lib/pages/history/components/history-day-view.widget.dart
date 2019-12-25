@@ -34,11 +34,9 @@ class HistoryDayWidget extends StatelessWidget {
           StreamBuilder(
               stream: countersCount$,
               builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Text('...');
-                }
-                final data = snapshot.data;
-                return Text(data.toString());
+                return snapshot.hasData
+                    ? Text(snapshot.data.toString())
+                    : Text('...');
               }),
         ],
       ),
