@@ -10,8 +10,8 @@ class DependencyInjectionWidget extends InheritedWidget {
   DependencyInjectionWidget({this.child}) : super(child: child);
 
   static DependencyInjectionWidget of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(DependencyInjectionWidget)
-        as DependencyInjectionWidget);
+    return context
+        .dependOnInheritedWidgetOfExactType<DependencyInjectionWidget>();
   }
 
   @override
