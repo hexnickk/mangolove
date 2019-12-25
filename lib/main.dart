@@ -3,6 +3,7 @@ import 'package:mangolove/dependency_injection.widget.dart';
 import 'package:mangolove/router.dart';
 
 void main() {
+  Router.forRoot();
   runApp(MyApp());
 }
 
