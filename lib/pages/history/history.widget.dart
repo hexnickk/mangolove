@@ -51,50 +51,11 @@ class _DateListWidgetState extends State<DateListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _init();
-
     return ListView.builder(
       controller: _scrollController,
       itemCount: pastDays,
       itemBuilder: (context, index) => HistoryDayWidget(index),
     );
-
-    // return Column(children: [
-    //   Expanded(
-    //     child: ListView.builder(
-    //       controller: _scrollController,
-    //       itemCount: _items.keys.length,
-    //       itemBuilder: (context, index) => StreamBuilder(
-    //         stream: _items[_items.keys.elementAt(index)],
-    //         builder: (context, snapshot) {
-    //           if (!snapshot.hasData) {
-    //             return Text('no data');
-    //           }
-    //           final date = _items.keys.elementAt(index);
-    //           final List<Counter> counters = snapshot.data;
-    //           return Column(
-    //             children: <Widget>[
-    //               Text(date.toString()),
-    //               ListView.builder(
-    //                 shrinkWrap: true,
-    //                 controller: _scrollController,
-    //                 itemCount: counters.length,
-    //                 itemBuilder: (context, index) {
-    //                   final date = counters[index];
-    //                   return Text(">" + date.toString());
-    //                 },
-    //               ),
-    //             ],
-    //           );
-    //         },
-    //       ),
-    //     ),
-    //   ),
-    // ]);
-  }
-
-  void _init() {
-    _loadMore();
   }
 
   void _loadMore() {
